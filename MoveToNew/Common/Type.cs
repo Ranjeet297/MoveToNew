@@ -1,0 +1,24 @@
+﻿using Abp.Domain.Entities.Auditing;
+using MoveToNew.TimesheetManagement;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Facile.Governance.Common
+{
+    public class Type : FullAuditedEntity
+    {
+        [MaxLength(250)]
+        [Required]
+        public virtual string Name { get; set; }
+        public virtual bool IsActive { get; set; }
+        public virtual int IdentyType { get; set; }
+        public virtual long? UserId { get; set; }
+        [ForeignKey("UserId")]
+        public virtual User? UserFk { get; set; }
+        [Column(TypeName = "timestamp without time zone")]
+        public override DateTime CreationTime { get => base.CreationTime; set => base.CreationTime = value; }
+        [Column(TypeName = "timestamp without time zone")]
+        public override DateTime? LastModificationTime { get => base.LastModificationTime; set => base.LastModificationTime = value; }
+    }
+
+}

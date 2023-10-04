@@ -10,7 +10,7 @@ class Program
 {
     static async Task Main(string[] args)
     {
-        var connectionString = "Host=localhost; Database=GovernanceDb; Username=postgres; Password=admin@123;";
+        var connectionString = "Host=192.168.1.37; Database=GovernanceDb; Username=postgres; Password=admin@123;";
 
         var serviceProvider = new ServiceCollection()
             .AddDbContext<GovernanceDbContext>(options => options.UseNpgsql(connectionString))
@@ -604,7 +604,7 @@ class Program
                 item.StatusesId = item.ChangeReqStatusId + prospectStatus.Count +
                 timesheetStatus.Count + taskStatus.Count + leadStatus.Count +
                 leadMessageStatus.Count + contentStatus.Count + campaignStatus.Count + bidStatus.Count +
-                actionStatus.Count  + invoiceStatus.Count + assetStatus.Count;
+                actionStatus.Count + invoiceStatus.Count + assetStatus.Count;
                 return item;
             }).Where(x => x.IsDeleted == false).ToList();
             context.ChangeRequestTracking.UpdateRange(changeReqTracking);
@@ -619,7 +619,7 @@ class Program
                 item.StatusesId = item.StatusId + prospectStatus.Count +
                 timesheetStatus.Count + taskStatus.Count + leadStatus.Count +
                 leadMessageStatus.Count + contentStatus.Count + campaignStatus.Count + bidStatus.Count +
-                actionStatus.Count  + invoiceStatus.Count +
+                actionStatus.Count + invoiceStatus.Count +
                 changeRequestStatus.Count + assetStatus.Count;
                 return item;
             }).Where(x => x.IsDeleted == false).ToList();
